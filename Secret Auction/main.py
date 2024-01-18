@@ -1,3 +1,4 @@
+#to be able to clear terminal screen after bid submitted
 import sys, subprocess
 
 bids = {}
