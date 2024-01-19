@@ -11,13 +11,13 @@ else:
     print("Boo you whore")
 
 def deal_card(player, amount):
-        for c in range(amount):
-            card = random.choice(cards)
-            player.append(card)
+    for c in range(amount):
+        card = random.choice(cards)
+        player.append(card)
 
-    def check_total(hand):
-        total = sum(hand)
-        return total
+def check_total(hand):
+    total = sum(hand)
+    return total
 
 while not game_over:
     comp_hand = []
