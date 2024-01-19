@@ -25,20 +25,37 @@ deal_card(player_hand, 2)
 
 def count_hand(player):
     total = sum(player)
-    return total
-
-
-
-hand_total = count_hand(player_hand)
-
-print(f"Your cards are {player_hand} and your total is {hand_total}")
-
-def check_blackjack(player):
-    total = sum(player)
     if total == 21:
-        if player == "comp_hand":
+        if player == comp_hand:
             print("Dealer got Blackjack! You Lose")
         else:
             print("You got Blackjack! You win")
-#    elif total > 21:
-#        if 11 in player:
+    elif total > 21:
+        if 11 in player:
+            ace = player.index(11)
+            player[ace] = 1
+            return sum(player)
+        else:
+            print(f"{player} busted, {total}")
+    else:
+        return total
+
+def end_turn(player):
+    hand_total = count_hand(player)
+    if player == player_hand:
+        print(f"Your cards are {player_hand} and your total is {hand_total}")
+
+print(f"Dealer's first card is {comp_hand[0]}")
+end_turn(player_hand)
+
+deal_again = input("Do you want another card? Type 'y' or 'n'.\n")
+
+if deal_again == "y":
+    deal_card(player_hand, 1)
+    count_hand(player_hand)
+    end_turn(player_hand)
+else:
+    count_hand(comp_hand)
+    if count_hand(comp_hand) < 16:
+        deal_card(comp_hand, 1 )
+        count_hand(comp_hand)
