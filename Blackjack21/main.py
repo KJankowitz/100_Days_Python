@@ -1,15 +1,6 @@
 import random
-
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-
 start = input("Welcome to Blackjack21! Would you like to play? Type 'y' or 'n'.\n")
-
-if start == "y":
-    game_over = False
-else:
-    game_over = True
-    print("Boo you whore")
-
 
 comp_hand = []
 player_hand = []
@@ -20,42 +11,44 @@ def deal_card(player, amount):
         player.append(card)
 
 deal_card(comp_hand, 2)
-
 deal_card(player_hand, 2)
 
-def count_hand(player):
-    total = sum(player)
+def calculate_score(hand):
+    total = sum(hand)
     if total == 21:
-        if player == comp_hand:
-            print("Dealer got Blackjack! You Lose")
-        else:
-            print("You got Blackjack! You win")
-    elif total > 21:
-        if 11 in player:
-            ace = player.index(11)
-            player[ace] = 1
-            return sum(player)
-        else:
-            print(f"{player} busted, {total}")
-    else:
-        return total
+        return 0
+    for card in hand:
+        if card == 11:
+            hand.remove(card)
+            hand.append(1)
+    return total
 
-def end_turn(player):
-    hand_total = count_hand(player)
-    if player == player_hand:
-        print(f"Your cards are {player_hand} and your total is {hand_total}")
+dealer_score = calculate_score(comp_hand)
+player_score = calculate_score(player_hand)
 
+if dealer_score == 0:
+    print("Dealer got blackjack. Player loses!")
+    game_over = True
+elif player_score == 0:
+    print("Player got blackjack. Player wins!")
+    game_over = True
+elif player_score > 21:
+    print(f"Player bust! Score {player_score} - Player loses!")
+    game_over = True
+
+print(f"Player hand: {player_hand} and total {player_score}")
 print(f"Dealer's first card is {comp_hand[0]}")
-end_turn(player_hand)
 
-deal_again = input("Do you want another card? Type 'y' or 'n'.\n")
+end_turn = False
+while not end_turn:
+    deal_again = input("Does Player want another card? Type 'y' or 'n'.\n")
+    if deal_again == "y":
+        deal_card(player_hand, 1)
+        print(calculate_score(player_hand))
+    else:
+        print("end turn")
+        end_turn = True
 
-if deal_again == "y":
-    deal_card(player_hand, 1)
-    count_hand(player_hand)
-    end_turn(player_hand)
-else:
-    count_hand(comp_hand)
-    if count_hand(comp_hand) < 16:
-        deal_card(comp_hand, 1 )
-        count_hand(comp_hand)
+while dealer_score < 17:
+    deal_card(comp_hand, 1)
+    print(calculate_score(comp_hand))
