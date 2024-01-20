@@ -19,9 +19,7 @@ def calculate_score(hand):
                 return sum(hand)
     return total
 
-
 def run_game(dealer_score, player_score):
-    
     if player_score > 21 and dealer_score > 21:
         return "Both bust. Draw"
     elif player_score == dealer_score:
@@ -39,7 +37,6 @@ def run_game(dealer_score, player_score):
     else:
         return "Dealer wins!"
     
-
 def play():
     comp_hand = []
     player_hand = []
@@ -76,7 +73,6 @@ def play():
         print(f"Player total: {player_score}\nDealer total: {dealer_score}")
         print(run_game(dealer_score, player_score))
         game_over = True
-
 
 while input("Welcome to Blackjack21! Would you like to play? Type 'y' or 'n'.\n") == "y":
     subprocess.run("clear", shell=True)
