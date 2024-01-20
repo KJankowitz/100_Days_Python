@@ -31,9 +31,9 @@ def run_game(dealer_score, player_score):
     elif player_score == 21:
         return "Player got blackjack. Player wins!"
     elif player_score > 21:  
-        return f"Player bust! Score {player_score} - Player loses!"
+        return f"Player bust! Player loses!"
     elif dealer_score > 21:
-        return f"Dealer bust! Score {dealer_score} - Player wins!"
+        return f"Dealer bust! Player wins!"
     elif player_score > dealer_score:
         return "Player wins!"
     else:
