@@ -10,27 +10,22 @@ word_length = len(chosen_word)
 game_over = False
 lives = 6
 
-
 print(logo)
 
 for _ in range(word_length):
     display.append("_")
 print(display)
 
-
 index = 0
 
 while not game_over:
     guess = input("Guess a letter\n").lower()
-
     if guess in display:
         print(f"{guess} has already been guessed")
-
     for n in range(word_length):
         letter = chosen_word[n]
         if letter == guess:
             display[n] = chosen_word[n]
-
     if guess not in chosen_word:
         print(f"{guess} is not in the word - lose a life!")
         lives -= 1
