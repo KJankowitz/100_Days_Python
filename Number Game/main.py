@@ -3,6 +3,9 @@ import random
 print("Welcome to the Number Guessing Game!\nGuess the number I'm thinking of between 1 and 100.")
 if input("Would you like to play? Type 'y' or 'n'\n") == "y":
     play_again = True
+else:
+    print("boo you whore")
+    play_again = False
 
 while play_again:
     num = random.randint(1, 100)
@@ -37,7 +40,7 @@ while play_again:
             guesses = 0
         else:
             guesses = guesses + check_lives()
-        print(f"You have {guesses} guess(es) left.")
+            print(f"You have {guesses} guess(es) left.")
 
     if input("Would you like to play again? Type 'y' or 'n'\n") == "n":
         play_again == False
