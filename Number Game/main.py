@@ -44,7 +44,3 @@ while play_again:
 
     if input("Would you like to play again? Type 'y' or 'n'\n") == "n":
         play_again = False
-
-
-
-
