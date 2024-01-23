@@ -43,7 +43,8 @@ while play_again:
             print(f"You have {guesses} guess(es) left.")
 
     if input("Would you like to play again? Type 'y' or 'n'\n") == "n":
-        play_again == False
+        play_again = False
+
 
 
 
