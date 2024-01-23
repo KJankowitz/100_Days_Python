@@ -1,5 +1,8 @@
 import random
-play_again = True
+
+print("Welcome to the Number Guessing Game!\nGuess the number I'm thinking of between 1 and 100.")
+if input("Would you like to play? Type 'y' or 'n'\n") == "y":
+    play_again = True
 
 while play_again:
     num = random.randint(1, 100)
@@ -17,24 +20,26 @@ while play_again:
         elif player_guess < num:
             return - 1
         else:
-            return
+            return 0
 
     def check_guess():
-        if player_guess > num:
-            return "Too high"
-        elif player_guess < num:
-            return "Too low"
-        elif player_guess == num:
-            return f"You won! The number was {num}"
+            if player_guess > num:
+                return "Too high"
+            elif player_guess < num:
+                return "Too low"
+            elif player_guess == num:
+                return f"You won! The number was {num}"
         
     while guesses > 0:
         player_guess = int(input("Guess the number\n"))
         print(check_guess())
-        guesses = guesses + check_lives()
+        if check_lives() == 0:
+            guesses = 0
+        else:
+            guesses = guesses + check_lives()
         print(f"You have {guesses} guess(es) left.")
 
-    restart = input("Would you like to play again? Type 'y' or 'n'\n")
-    if restart == "n":
+    if input("Would you like to play again? Type 'y' or 'n'\n") == "n":
         play_again == False
 
 
