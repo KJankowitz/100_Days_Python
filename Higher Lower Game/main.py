@@ -1,12 +1,17 @@
 import random
+from game_data import data
 
 #things to compare
-A = ""
+A = data[0]
 B = ""
 
 #1 pick random dict from data list and assign to B
+n = random.randint(0, len(data))
+B = data[n]
 
 #2 display all info exept followers?
+print(f"Option A: {A["name"]}, a {A["description"]} from {A["country"]}")
+print(f"Option B: {B["name"]}, a {B["description"]} from {B["country"]}")
 
 #3 compare A and B and save answer?
 
