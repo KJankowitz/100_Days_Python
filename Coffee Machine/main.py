@@ -1,3 +1,5 @@
+import math
+
 MENU = {
     "espresso": {
         "ingredients": {
@@ -52,18 +54,21 @@ def check_resources(drink):
 print(check_resources(instruction))
 
 # TODO: 5 Process coins - if sufficient resources, prompt user to insert coins
-#25c
+
 quarters = int(input("Please insert coins.\nHow many quarters?: "))
-#10c
 dimes = int(input("How many dimes?: "))
-#5c
 nickels = int(input("How many nickels?: "))
-#1c
 pennies = int(input("How many pennies?: "))
+
+
 def check_money(drink):
     all_money = (quarters*0.25) + (dimes*0.1) + (nickels*0.05) + (pennies*0.01)
     if all_money < MENU[drink]["cost"]:
         return "Not enough money. Refunding coins."
+    elif all_money > MENU[drink]["cost"]:
+        change = round(all_money - MENU[drink]["cost"], 2)
+        return f"You have ${change} change"
+
 
 print(check_money(instruction))
 # TODO: 6 Check successful transaction - either refunded if insufficient or added to machine as profit,
