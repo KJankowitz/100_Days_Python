@@ -3,6 +3,7 @@ MENU = {
         "ingredients": {
             "water": 50,
             "coffee": 18,
+            "milk": 0,
         },
         "cost": 1.5,
     },
@@ -26,7 +27,7 @@ MENU = {
 
 resources = {
     "water": 300,
-    "milk": 20,
+    "milk": 200,
     "coffee": 100,
 }
 
@@ -44,8 +45,7 @@ def check_resources(drink):
         return "Not enough water"
     elif resources["coffee"] < MENU[drink]["ingredients"]["coffee"]:
         return "Not enough coffee"
-    if MENU[drink]["ingredients"]["milk"]:
-        if resources["milk"] < MENU[drink]["ingredients"]["milk"]:
+    elif resources["milk"] < MENU[drink]["ingredients"]["milk"]:
          return "Not enough milk"
 
 
