@@ -60,6 +60,9 @@ dimes = int(input("How many dimes?: "))
 nickels = int(input("How many nickels?: "))
 pennies = int(input("How many pennies?: "))
 
+# TODO: 6 Check successful transaction - either refunded if insufficient or added to machine as profit,
+#  or offered change
+
 
 def check_money(drink):
     all_money = (quarters*0.25) + (dimes*0.1) + (nickels*0.05) + (pennies*0.01)
@@ -67,10 +70,19 @@ def check_money(drink):
         return "Not enough money. Refunding coins."
     elif all_money > MENU[drink]["cost"]:
         change = round(all_money - MENU[drink]["cost"], 2)
-        return f"You have ${change} change"
+        return f"Please take your ${change} change"
 
 
 print(check_money(instruction))
-# TODO: 6 Check successful transaction - either refunded if insufficient or added to machine as profit,
-#  or offered change
+#
 # TODO: 7 Make coffee - deduct ingredients from resources and present to user
+
+def make_coffee(drink):
+    water = resources["water"] - MENU[drink]["ingredients"]["water"]
+    coffee = resources["coffee"] - MENU[drink]["ingredients"]["coffee"]
+    milk = resources["milk"] - MENU[drink]["ingredients"]["milk"]
+    return water, milk, coffee
+
+
+resources = make_coffee(instruction)
+print(resources)
