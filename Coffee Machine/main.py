@@ -84,5 +84,10 @@ def make_coffee(drink):
     return water, milk, coffee
 
 
-resources = make_coffee(instruction)
+resources = {
+    "water": make_coffee(instruction)[0],
+    "milk": make_coffee(instruction)[1],
+    "coffee": make_coffee(instruction)[2],
+}
+
 print(resources)
