@@ -63,12 +63,11 @@ while machine_on:
     instruction = input("What would you like? (espresso/latte/cappuccino):\n")
     if instruction == "report":
         print(resources)
-
     elif instruction == "off":
         machine_on = False
     print(check_resources(instruction))
-    if check_resources(instruction) == "None":
 
+    if check_resources(instruction) == "None":
         quarters = int(input("Please insert coins.\nHow many quarters?: "))
         dimes = int(input("How many dimes?: "))
         nickels = int(input("How many nickels?: "))
