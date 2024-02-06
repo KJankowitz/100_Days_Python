@@ -1,4 +1,4 @@
-import math
+machine_on = True
 
 MENU = {
     "espresso": {
@@ -40,7 +40,7 @@ def check_resources(drink):
     elif resources["coffee"] < MENU[drink]["ingredients"]["coffee"]:
         return "Not enough coffee"
     elif resources["milk"] < MENU[drink]["ingredients"]["milk"]:
-         return "Not enough milk"
+        return "Not enough milk"
 
 
 def check_money(drink):
@@ -59,23 +59,25 @@ def make_coffee(drink):
     return water, milk, coffee
 
 
-instruction = input("What would you like? (espresso/latte/cappuccino):\n")
-# TODO: 2 Turn off by entering "off"
-print(check_resources(instruction))
-if instruction == "report":
-    print(resources)
+while machine_on:
+    instruction = input("What would you like? (espresso/latte/cappuccino):\n")
+    if instruction == "report":
+        print(resources)
 
-quarters = int(input("Please insert coins.\nHow many quarters?: "))
-dimes = int(input("How many dimes?: "))
-nickels = int(input("How many nickels?: "))
-pennies = int(input("How many pennies?: "))
+    elif instruction == "off":
+        machine_on = False
+    print(check_resources(instruction))
+    if check_resources(instruction) == "None":
 
-print(check_money(instruction))
+        quarters = int(input("Please insert coins.\nHow many quarters?: "))
+        dimes = int(input("How many dimes?: "))
+        nickels = int(input("How many nickels?: "))
+        pennies = int(input("How many pennies?: "))
 
-resources = {
-    "water": make_coffee(instruction)[0],
-    "milk": make_coffee(instruction)[1],
-    "coffee": make_coffee(instruction)[2],
-}
+        print(check_money(instruction))
 
-print(resources)
+        resources = {
+            "water": make_coffee(instruction)[0],
+            "milk": make_coffee(instruction)[1],
+            "coffee": make_coffee(instruction)[2],
+        }
