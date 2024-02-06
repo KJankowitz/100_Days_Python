@@ -33,14 +33,6 @@ resources = {
     "coffee": 100,
 }
 
-# TODO: 1 Start machine with prompt "What would you like? (espresso/latte/cappuccino):"
-instruction = input("What would you like? (espresso/latte/cappuccino):\n")
-# TODO: 2 Turn off by entering "off"
-# TODO: 3 Print report on "report" prompt to show current resources
-if instruction == "report":
-    print(resources)
-# TODO: 4 Check for sufficient resources to make drink
-
 
 def check_resources(drink):
     if resources["water"] < MENU[drink]["ingredients"]["water"]:
@@ -49,19 +41,6 @@ def check_resources(drink):
         return "Not enough coffee"
     elif resources["milk"] < MENU[drink]["ingredients"]["milk"]:
          return "Not enough milk"
-
-
-print(check_resources(instruction))
-
-# TODO: 5 Process coins - if sufficient resources, prompt user to insert coins
-
-quarters = int(input("Please insert coins.\nHow many quarters?: "))
-dimes = int(input("How many dimes?: "))
-nickels = int(input("How many nickels?: "))
-pennies = int(input("How many pennies?: "))
-
-# TODO: 6 Check successful transaction - either refunded if insufficient or added to machine as profit,
-#  or offered change
 
 
 def check_money(drink):
@@ -73,16 +52,25 @@ def check_money(drink):
         return f"Please take your ${change} change"
 
 
-print(check_money(instruction))
-#
-# TODO: 7 Make coffee - deduct ingredients from resources and present to user
-
 def make_coffee(drink):
     water = resources["water"] - MENU[drink]["ingredients"]["water"]
     coffee = resources["coffee"] - MENU[drink]["ingredients"]["coffee"]
     milk = resources["milk"] - MENU[drink]["ingredients"]["milk"]
     return water, milk, coffee
 
+
+instruction = input("What would you like? (espresso/latte/cappuccino):\n")
+# TODO: 2 Turn off by entering "off"
+print(check_resources(instruction))
+if instruction == "report":
+    print(resources)
+
+quarters = int(input("Please insert coins.\nHow many quarters?: "))
+dimes = int(input("How many dimes?: "))
+nickels = int(input("How many nickels?: "))
+pennies = int(input("How many pennies?: "))
+
+print(check_money(instruction))
 
 resources = {
     "water": make_coffee(instruction)[0],
